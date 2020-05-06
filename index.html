@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+	<meta content="INDEX,FOLLOW" name="robots" />
+	<base href="/" />
+	<link rel="shortcut icon" type="image/png" href="images/onme_favicon.png" />
+	<title>Onme - Xem tivi miễn phí 3G/4G</title>
+	<meta name="description" content="Dịch vụ xem tivi, truyền hình miễn phí 3G/4G, tận hưởng những bộ phim điện ảnh, phim bom tấn mới nhất, các chương trình truyền hình chất lượng HD mọi lúc, mọi nơi">
+	<meta name="keywords" content="xem tivi miễn phí 3G/4G, xem truyền hình online, xem tivi online, xem vtv1, xem vtv3, xem phim HD, truyền hình cáp">
+	<!-- META FOR FACEBOOK -->
+	<meta property="og:site_name" content="Onme – Xem tivi miễn phí 3G/4G">
+	<meta property="og:url" content="http://onme.vn"/>
+	<meta property="og:image" itemprop="thumbnailUrl" content="images/facebook-onme-viettel.jpg"/>
+	<meta property="og:title" content="Onme – Xem tivi miễn phí 3G/4G, xem tivi online, xem phim HD" />
+	<meta property="og:description" content=" Dịch vụ xem tivi, truyền hình miễn phí 3G/4G, tận hưởng những bộ phim điện ảnh, phim bom tấn mới nhất, các chương trình truyền hình chất lượng HD mọi lúc, mọi nơi" />
+	<!-- END META FOR FACEBOOK -->
+
+	<link rel="canonical" href="http://onme.vn/">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" href="./style.css" />
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Ads: 757299921 -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-757299921"></script> -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136716948-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		// gtag('config', 'AW-757299921');
+
+	</script>
+	<script>
+		gtag('config', 'UA-136716948-1');
+	</script>
+
+	<!-- Facebook Pixel Code -->
+	<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '376110849915821'); 
+		fbq('track', 'PageView');
+	</script>
+	<noscript>
+	 <img height="1" width="1" src="https://www.facebook.com/tr?id=376110849915821&ev=PageView
+	&noscript=1"/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+
+
+</head>
+
+<body ng-app="onme" ng-controller="appCtrl">
+	<ui-view></ui-view>
+	<div id="overlay"  style="display: none">
+		<div id="loading" ></div>
+	</div>
+
+	<script src="lib/lib.min.js"></script>
+	<script src="all.min.js"></script>
+
+
+</body>
+
+</html>

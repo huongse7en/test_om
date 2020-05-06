@@ -1,0 +1,136 @@
+<link href="css/video-js.min.css" rel="stylesheet">
+<div class="v-container-video" ng-show="listVideo.length >= 0 && currentVideo">
+    <header id="header" class="v-header" ng-if="!currentVideo.isPurchasedPackage || (typePhone === 'Unknown' || typePhone === 'Windows Phone')">
+    <span ng-bind-html="header" ></span>
+    <!-- <p ng-if="isLogin" style="    font-weight: 500;">Thuê bao: {{myPhone}}</p> -->
+    </header>
+    <div class="banner-ad" ng-if="(typePhone === 'iOS' || typePhone === 'Android') && currentVideo.isPurchasedPackage">
+        <div class="logo-header"></div>
+        <div class="text-header">Tải ứng dụng ONME để xem 158 kênh truyền hình, Tivi xem lại, video đặc sắc, Phim HD... miễn phí 3G/4G tốc độ cao</div>
+        <div class="button-down" ng-class="{'ios': typePhone === 'iOS', 'android' : typePhone === 'Android'}" ng-click="clickDownApp()"></div>
+    </div>
+<!-- <button ng-click="test()">TEST GA</button> -->
+<!-- <div>{{showIconPlay}} - {{isLogin}} - {{videoError}} - {{currentVideo.isPurchasedPackage}}</div> -->
+    <div class="container v-container">
+        <div class="v-content">
+            <div class="left col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="v-video">
+                        <div class="encrypt" ng-if="currentVideo.isEncrypted && currentVideo.isPurchasedPackage">
+                                <div class="encrypt-content">
+                                    <p>MỜI BẠN CÀI APP ONME ĐỂ XEM <span ng-bind="isChannel ? 'KÊNH' : 'VIDEO'"></span> NÀY</p>
+                                    <button ng-click="clickDownApp()">CÀI ĐẶT NGAY</button>
+                                </div>
+                            </div>
+                        <video
+                        id="my-player"
+                        class="video-js"
+                        controls
+                        preload
+                        poster="../../uploads/banner_01.jpg"
+                        data-setup='{}'>
+                    <!-- <source src="http://27.67.50.6:18080/310260_4.m3u8?AdaptiveType=HLS&VOD_RequestID=LOS0b5dL1phaF%2BrXSlVuGOGJ%2FYJVnbZtNwHo5B%2F6HyMiBI16GpgnDqvR3w4ucAxZDyfJgYU6kC1MoQG3P8prsMf4t6EzRdCyD2pViRUkgFiIOdC4leZ2ZAKO7Ec1nwk8"
+                    type="application/x-mpegURL"></source> -->
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                        </a>
+                    </p>
+                    </video>
+                    <div class="v-btn-skip" ng-click="skip()" ng-hide="currentVideo.isPurchasedPackage && isLogin"></div>
+                    <div class="v-btn-play" ng-click="playVideo()"  ng-show="currentVideo.isPurchasedPackage && showIconPlay && isLogin && !videoError "><i class="icon-youtube-play"></i></div>
+                    <div class="v-btn-error" ng-show="currentVideo.isPurchasedPackage && videoError && isLogin "><i class="icon-youtube-play"></i></div>
+                    <div class="v-btn-register v-btn-video" ng-hide="currentVideo.isPurchasedPackage && isLogin" ng-click="registerVideo(currentVideo)">
+                        <span class="v-text-register" ng-bind="message(currentVideo.confirmPackage)"></span>
+                    </div>
+                </div>
+
+                <div class="v-name-video text-left" ng-bind="currentVideo.program.title[0].text"></div>
+            </div>
+            <div class="right col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="v-list-video">
+                    <div class="v-related show-mb" ng-show="listVideo.length > 0">Xem tiếp</div>
+                    <div class="v-item-video" ng-repeat="item in listVideo" >
+                        <div class="v-image" ng-click="chooseVideo(item)">
+                            <img ng-src="http://otttv.viettel.com.vn/api1/contents/pictures/{{item.program.id}}?width=160.000000&height=90.000000&class=horizontal">
+                            <div class="v-time" ng-bind="item.program.display_runtime"></div>
+                        <!-- <div class="v-image" ng-style="{'background-image':'url(http://otttv.viettel.com.vn/api1/contents/pictures/{{item.program.id}}?width=360.000000&height=516.000000)', 'background-position': 'top center', 'background-size': 'cover'}"> -->
+                        </div>
+                        <div class="v-info-item" >
+                            <p class="v-name-item" ng-bind="item.program.title[0].text" ng-click="chooseVideo(item)"></p>
+                            <!-- <div class="v-btn-register v-btn-video v-btn-register-item "  ng-hide="item.isPurchasedPackage && isLogin" ng-click="registerVideo(item)">
+                                <span class="v-text-register">{{message(item.confirmPackage)}}</span>
+                            </div> -->
+                            <!-- <p class="v-channel-item">{{item.program.genres[0]}}</p> -->
+                        </div>
+                    </div>
+                    <div class="wrap" ng-click="loadMore()">
+                        <a href="#" class="button" ng-show="textButton" ng-bind="textButton"></a>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade centered-modal" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Mời bạn đăng ký để xem video.</p>
+          <div class="modal-btn">
+            <div class="modal-btn-skip" data-dismiss="modal"></div>
+            <div class="modal-btn-register" ng-click="registerVideo()"></div>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class="modal fade centered-modal" id="confirmDialogVideo" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-title" style="padding: 10px 15px;font-weight: 400;">Xác nhận
+        <span class="icon-close" data-dismiss="modal"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAtElEQVRIie2VTQ4CIQyFv3gHEo/gQu/hxDMT7yAL9zNzj3ExJTGVASkhLpyXNOGnfa8FUmBHJW7ADCxGm4AhJzA1kEcbcwLRyYqP+EMD2VcoCZyAO3BM7DnAA5caQV2il3kQwnfyIHs+E18UcMBD1p6slaTWzAI626DGTvmaBHQlqcw347u/omIGdD6i7pfc/ZmehUAfRRTx4mMWqMXve9GsMqk1WFv+Jgba/oQRuBoK/We8AFWjkoBMewj/AAAAAElFTkSuQmCC"></span>
+    </div>
+        <div class="modal-body">
+          <p ng-bind="confirmSMS.content"></p>
+          <div class="modal-btn">
+            <!-- <div class="modal-btn-close" data-dismiss="modal">Để sau</div> -->
+            <div class="modal-btn-ok" data-dismiss="modal" ng-click="confirmBuy()">Đồng ý</div>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+<div class="modal fade centered-modal" id="popupBuyed" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-title" style="padding: 10px 15px;font-weight: 400;">Thông báo
+        <span class="icon-close" data-dismiss="modal" ng-click="playVideo()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAtElEQVRIie2VTQ4CIQyFv3gHEo/gQu/hxDMT7yAL9zNzj3ExJTGVASkhLpyXNOGnfa8FUmBHJW7ADCxGm4AhJzA1kEcbcwLRyYqP+EMD2VcoCZyAO3BM7DnAA5caQV2il3kQwnfyIHs+E18UcMBD1p6slaTWzAI626DGTvmaBHQlqcw347u/omIGdD6i7pfc/ZmehUAfRRTx4mMWqMXve9GsMqk1WFv+Jgba/oQRuBoK/We8AFWjkoBMewj/AAAAAElFTkSuQmCC"></span>
+    </div>
+        <div class="modal-body">
+          <p>Quý khách đã đăng ký thành công gói ONME<span class='up'>{{period}}</span> dịch vụ Onme.</p>
+          <div class="modal-btn modal-btn-content">
+            <!-- <div class="modal-btn-close" data-dismiss="modal">Để sau</div> -->
+            <div class="modal-btn-ok" data-dismiss="modal" ng-click="playVideo()">TIẾP TỤC XEM</div>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+<!-- <toaster-container></toaster-container> -->
+<!-- <toaster-container toaster-options="{'toaster-id': 2,'position-class': 'toast-center'}"></toaster-container> -->
+<!-- <script>
+
+</script> -->
