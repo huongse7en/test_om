@@ -107,6 +107,25 @@
     </div>
 </div>
 
+<div class="modal fade centered-modal" id="confirmSubscribleDialog" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-title" style="padding: 10px 15px;font-weight: 400;">Xác nhận
+        <span class="icon-close" data-dismiss="modal"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAtElEQVRIie2VTQ4CIQyFv3gHEo/gQu/hxDMT7yAL9zNzj3ExJTGVASkhLpyXNOGnfa8FUmBHJW7ADCxGm4AhJzA1kEcbcwLRyYqP+EMD2VcoCZyAO3BM7DnAA5caQV2il3kQwnfyIHs+E18UcMBD1p6slaTWzAI626DGTvmaBHQlqcw347u/omIGdD6i7pfc/ZmehUAfRRTx4mMWqMXve9GsMqk1WFv+Jgba/oQRuBoK/We8AFWjkoBMewj/AAAAAElFTkSuQmCC"></span>
+    </div>
+        <div class="modal-body">
+          <p ng-bind="confirmSubscrible.content"></p>
+          <div class="modal-btn modal-btn-content">
+            <div class="modal-btn-close" data-dismiss="modal">Đóng</div>
+            <div class="modal-btn-ok float-right" data-dismiss="modal" ng-click="sendMessage()">Gửi tin nhắn</div>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
 <div class="modal fade centered-modal" id="popupBuyed" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
