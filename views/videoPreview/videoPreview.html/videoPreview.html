@@ -1,9 +1,10 @@
-<link href="../videojs/video-js.min.css" rel="stylesheet">
+<link href="css/video-js.min.css" rel="stylesheet">
 <div class="v-container-video" ng-show="listVideo.length >= 0 && currentVideo">
-    <!-- <header id="header" class="v-header" ng-if="!currentVideo.isPurchasedPackage || (typePhone === 'Unknown' || typePhone === 'Windows Phone')">
+    <header id="header" class="v-header" ng-if="!currentVideo.isPurchasedPackage || (typePhone === 'Unknown' || typePhone === 'Windows Phone')">
     <span ng-bind-html="header" ></span>
-    </header> -->
-    <div class="banner-ad">
+    <!-- <p ng-if="isLogin" style="    font-weight: 500;">Thuê bao: {{myPhone}}</p> -->
+    </header>
+    <div class="banner-ad" ng-if="(typePhone === 'iOS' || typePhone === 'Android') && currentVideo.isPurchasedPackage">
         <div class="logo-header"></div>
         <div class="text-header">Tải ứng dụng ONME để xem 158 kênh truyền hình, Tivi xem lại, video đặc sắc, Phim HD... miễn phí 3G/4G tốc độ cao</div>
         <div class="button-down" ng-class="{'ios': typePhone === 'iOS', 'android' : typePhone === 'Android'}" ng-click="clickDownApp()"></div>
@@ -14,16 +15,10 @@
         <div class="v-content">
             <div class="left col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <div class="v-video">
-                        <div class="encrypt"  ng-if="currentVideo.isEncrypted || (isLogin && !currentVideo.isFreeNoPair && !currentVideo.isPurchasedPackage) || !isLogin"><!--ng-if="currentVideo.isEncrypted && currentVideo.isPurchasedPackage"-->
+                        <div class="encrypt" ng-if="currentVideo.isEncrypted && currentVideo.isPurchasedPackage">
                                 <div class="encrypt-content">
-                                    <span ng-if="!isLogin || currentVideo.isEncrypted">
-                                    <p style="margin-bottom: 5px">MỜI BẠN CÀI APP ONME ĐỂ XEM <span ng-bind="isChannel ? 'KÊNH' : 'VIDEO'"></span> NÀY</p>
-                                    <button ng-click="clickDownApp()">TẢI NGAY</button>
-                                    </span>
-                                    <span ng-if="isLogin && !currentVideo.isEncrypted">
-                                        <p>MỜI BẠN ĐĂNG KÝ ONME ĐỂ XEM NỘI DUNG NÀY/ 3.000 VNĐ (gia hạn theo ngày)</p>
-                                        <button ng-click="openSMS()">ĐĂNG KÝ NGAY</button>
-                                    </span>
+                                    <p>MỜI BẠN CÀI APP ONME ĐỂ XEM <span ng-bind="isChannel ? 'KÊNH' : 'VIDEO'"></span> NÀY</p>
+                                    <button ng-click="clickDownApp()">CÀI ĐẶT NGAY</button>
                                 </div>
                             </div>
                         <video
@@ -43,19 +38,15 @@
                         </a>
                     </p>
                     </video>
-                    <!-- <div class="v-btn-skip" ng-click="skip()" ng-hide="currentVideo.isPurchasedPackage && isLogin"></div> -->
-                    <div class="v-btn-play" ng-click="playVideo()"  ng-show="(currentVideo.isPurchasedPackage || currentVideo.isFreeNoPair) && showIconPlay && isLogin && !videoError  && !currentVideo.isEncrypted"><i class="icon-youtube-play"></i></div>
-                    <div class="v-btn-error" ng-show="(currentVideo.isPurchasedPackage || currentVideo.isFreeNoPair) && videoError && isLogin "><i class="icon-youtube-play"></i></div>
-                    <!-- <div class="v-btn-register v-btn-video" ng-hide="currentVideo.isPurchasedPackage && isLogin" ng-click="registerVideo(currentVideo)">
+                    <div class="v-btn-skip" ng-click="skip()" ng-hide="(isPreview || currentVideo.isPurchasedPackage) && isLogin"></div>
+                    <div class="v-btn-play" ng-click="playVideo()"  ng-show="(isPreview || currentVideo.isPurchasedPackage) && showIconPlay && isLogin && !videoError "><i class="icon-youtube-play"></i></div>
+                    <div class="v-btn-error" ng-show="(isPreview || currentVideo.isPurchasedPackage) && videoError && isLogin "><i class="icon-youtube-play"></i></div>
+                    <div class="v-btn-register v-btn-video" ng-hide="(isPreview || currentVideo.isPurchasedPackage) && isLogin" ng-click="registerVideo(currentVideo)">
                         <span class="v-text-register" ng-bind="message(currentVideo.confirmPackage)"></span>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="v-name-video text-left" ng-bind="currentVideo.program.title[0].text"></div>
-                <div class="ads" ng-click="clickDownApp()">
-                    <div class="finger"></div>
-                    <div class="ads-text">ĐỂ XEM TOÀN BỘ NỘI DUNG TRÊN ONME MỜI TRUY CẬP: <b>http://onme.vn/app</b></div>
-                </div>
             </div>
             <div class="right col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <div class="v-list-video">

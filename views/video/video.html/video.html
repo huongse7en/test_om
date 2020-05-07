@@ -1,3 +1,4 @@
+<!-- <link href="css/video-js.min.css" rel="stylesheet"> -->
 <link href="../videojs/video-js.min.css" rel="stylesheet">
 <div class="v-container-video" ng-show="listVideo.length >= 0 && currentVideo">
 <header id="header" class="v-header" ng-if="!currentVideo.isPurchasedPackage || (typePhone === 'Unknown' || typePhone === 'Windows Phone')">
@@ -96,7 +97,7 @@
         <span class="icon-close" data-dismiss="modal"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAtElEQVRIie2VTQ4CIQyFv3gHEo/gQu/hxDMT7yAL9zNzj3ExJTGVASkhLpyXNOGnfa8FUmBHJW7ADCxGm4AhJzA1kEcbcwLRyYqP+EMD2VcoCZyAO3BM7DnAA5caQV2il3kQwnfyIHs+E18UcMBD1p6slaTWzAI626DGTvmaBHQlqcw347u/omIGdD6i7pfc/ZmehUAfRRTx4mMWqMXve9GsMqk1WFv+Jgba/oQRuBoK/We8AFWjkoBMewj/AAAAAElFTkSuQmCC"></span>
     </div>
         <div class="modal-body">
-          <p ng-bind="confirmSMS.content"></p>
+          <p ng-bind="confirmSMS.message"></p>
           <div class="modal-btn modal-btn-content">
             <!-- <div class="modal-btn-close" data-dismiss="modal">Để sau</div> -->
             <div class="modal-btn-ok" data-dismiss="modal" ng-click="confirmBuy()">Đồng ý</div>
