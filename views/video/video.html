@@ -1,4 +1,4 @@
-<link href="../../css/video-js.min.css" rel="stylesheet">
+<!-- <link href="../../css/video-js.min.css" rel="stylesheet"> -->
 <div class="v-container-video" ng-show="listVideo.length >= 0 && currentVideo">
 <header id="header" class="v-header" ng-if="!currentVideo.isPurchasedPackage || (typePhone === 'Unknown' || typePhone === 'Windows Phone')">
 <span ng-bind-html="header" ></span>
@@ -37,11 +37,17 @@
                         </a>
                     </p>
                     </video>
-                    <div class="v-btn-skip" ng-click="skip()" ng-hide="currentVideo.isPurchasedPackage && isLogin"></div>
                     <div class="v-btn-play" ng-click="playVideo()"  ng-show="currentVideo.isPurchasedPackage && showIconPlay && isLogin && !videoError "><i class="icon-youtube-play"></i></div>
                     <div class="v-btn-error" ng-show="currentVideo.isPurchasedPackage && videoError && isLogin "><i class="icon-youtube-play"></i></div>
-                    <div class="v-btn-register v-btn-video" ng-hide="currentVideo.isPurchasedPackage && isLogin" ng-click="registerVideo(currentVideo)">
-                        <span class="v-text-register" ng-bind="message(currentVideo.confirmPackage)"></span>
+                    <div class="v-btn-skip-register">
+                        <div class="v-btn-wrap text-right">
+                            <div class="v-btn-skip" ng-click="skip()" ng-hide="currentVideo.isPurchasedPackage && isLogin">Xem sau</div>
+                        </div>
+                        <div class="v-btn-wrap">
+                            <div class="v-btn-register" ng-hide="currentVideo.isPurchasedPackage && isLogin" ng-click="registerVideo(currentVideo)">
+                                <span class="v-text-register" ng-bind="message(currentVideo.confirmPackage)"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -84,7 +90,7 @@
         </div>
         </div>
       </div>
-      
+    
     </div>
 </div>
 
