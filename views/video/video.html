@@ -7,12 +7,12 @@
     <div class="text-header">Tải ứng dụng ONME để xem 158 kênh truyền hình, Tivi xem lại, video đặc sắc, Phim HD... miễn phí 3G/4G tốc độ cao</div>
     <div class="button-down" ng-class="{'ios': typePhone === 'iOS', 'android' : typePhone === 'Android'}" ng-click="clickDownApp()"></div>
 </div>
-<div>{{showIconPlay}} - {{isLogin}} - {{videoError}} - {{currentVideo.isEncrypted}}-{{currentVideo.isPurchasedPackage}}</div>
+<!-- <div>{{showIconPlay}} - {{isLogin}} - {{videoError}} - {{currentVideo.isEncrypted}}-{{currentVideo.isPurchasedPackage}}</div> -->
     <div class="container v-container">
         <div class="v-content">
             <div class="left col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <div class="v-video">
-                        <div class="encrypt" ng-if="currentVideo.isEncrypted && currentVideo.isPurchasedPackage">
+                        <div class="encrypt" ng-show="currentVideo.isEncrypted && currentVideo.isPurchasedPackage">
                             <div class="encrypt-content">
                                 <p>MỜI BẠN CÀI APP ONME ĐỂ XEM <span ng-bind="isChannel ? 'KÊNH' : 'VIDEO'"></span> NÀY</p>
                                 <button ng-click="clickDownApp()">CÀI ĐẶT NGAY</button>
@@ -36,7 +36,7 @@
                     </p>
                     </video>
                     <div class="v-btn-play" ng-click="playVideo()"  ng-show="currentVideo.isPurchasedPackage && showIconPlay && isLogin && !videoError "><i class="icon-youtube-play"></i></div>
-                    <div class="v-btn-error" ng-if="currentVideo.isPurchasedPackage && videoError && isLogin "><i class="icon-youtube-play"></i></div>
+                    <div class="v-btn-error" ng-show="currentVideo.isPurchasedPackage && videoError && isLogin "><i class="icon-youtube-play"></i></div>
                     <div class="v-btn-skip-register">
                         <div class="v-btn-wrap text-right">
                             <div class="v-btn-skip" ng-click="skip()" ng-hide="currentVideo.isPurchasedPackage && isLogin">Xem sau</div>
