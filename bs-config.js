@@ -3,5 +3,6 @@ module.exports = {
     files: ['./**/*.{html,htm,css,js}'],
     server:{
       baseDir: ["./"]
-    }
+    },
+    ghostMode: false
 };
