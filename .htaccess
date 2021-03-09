@@ -1,0 +1,29 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+<IfModule mod_headers.c>
+    # Servir des fichiers CSS et JS compressés avec gzip, s'ils existent, et
+    # si le client accepte gzip.
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}\.gz" "-s"
+    RewriteRule "^(.*)\.(css|js)" "$1\.$2\.gz" [QSA]
+
+
+    # Servir des types de contenus corrects, et empêcher mod_deflate
+    # d'effectuer un double gzip.
+    RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-gzip:1]
+    RewriteRule "\.js\.gz$"  "-" [T=text/javascript,E=no-gzip:1]
+
+
+    <FilesMatch "(\.js\.gz|\.css\.gz)$">
+      # Servir le type de codage correct.
+      Header append Content-Encoding gzip
+
+      # Force les mandataires à mettre en cache séparément les fichiers
+      # css/js gzippés & non gzippés.
+      Header append Vary Accept-Encoding
+    </FilesMatch>
+</IfModule>
